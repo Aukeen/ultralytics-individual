@@ -350,7 +350,8 @@ def check_python(minimum: str = "3.8.0", hard: bool = True, verbose: bool = Fals
 
 
 @TryExcept()
-def check_requirements(requirements=ROOT.parent / "requirements.txt", exclude=(), install=True, cmds=""):
+def check_requirements(requirements=ROOT.parent / "requirements.txt", exclude=(), install=True,
+                       cmds="-i https://pypi.tuna.tsinghua.edu.cn/simple"):  # MARK
     """
     Check if installed dependencies meet YOLOv8 requirements and attempt to auto-update if needed.
 

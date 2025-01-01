@@ -1046,6 +1046,8 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             c2 = sum(ch[x] for x in f)
         elif m in {Detect, WorldDetect, Segment, Pose, OBB, ImagePoolingAttn, v10Detect}:
             args.append([ch[x] for x in f])
+            if m is Detect and len(args) > 2:
+                args[-2], args[-1] = args[-1], args[-2]
             if m is Segment:
                 args[2] = make_divisible(min(args[2], max_channels) * width, 8)
             if m in {Detect, Segment, Pose, OBB}:
