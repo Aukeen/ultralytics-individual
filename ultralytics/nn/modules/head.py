@@ -1243,7 +1243,7 @@ class EfficientNMS_TRT(torch.autograd.Function):
                 score_activation: int = 0,
                 class_agnostic: int = 1,
                 plugin_version: str = '1',
-    ) -> Tuple[Tensor, Tensor, Tensor, Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         batch_size, num_boxes, num_classes = scores.shape
         num_dets = torch.randint(0, max_output_boxes, (batch_size, 1), dtype=torch.int32)
         det_boxes = torch.randn(batch_size, max_output_boxes, 4, dtype=torch.float32)
@@ -1265,7 +1265,7 @@ class EfficientNMS_TRT(torch.autograd.Function):
         score_activation: int = 0,
         class_agnostic: int = 1,
         plugin_version: str = '1',
-    ) -> Tuple[Value, Value, Value, Value]:
+    ) -> Tuple[torch.Value, torch.Value, torch.Value, torch.Value]:
         return g.op(
             'TRT::EfficientNMS_TRT',
             boxes,
@@ -1298,7 +1298,7 @@ class EfficientRotatedNMS_TRT(torch.autograd.Function):
         score_activation: int = 0,
         class_agnostic: int = 1,
         plugin_version: str = '1',
-    ) -> Tuple[Tensor, Tensor, Tensor, Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         batch_size, num_boxes, num_classes = scores.shape
         num_dets = torch.randint(0, max_output_boxes, (batch_size, 1), dtype=torch.int32)
         det_boxes = torch.randn(batch_size, max_output_boxes, 5, dtype=torch.float32)
@@ -1320,7 +1320,7 @@ class EfficientRotatedNMS_TRT(torch.autograd.Function):
         score_activation: int = 0,
         class_agnostic: int = 1,
         plugin_version: str = '1',
-    ) -> Tuple[Value, Value, Value, Value]:
+    ) -> Tuple[torch.Value, torch.Value, torch.Value, torch.Value]:
         return g.op(
             'TRT::EfficientRotatedNMS_TRT',
             boxes,
@@ -1353,7 +1353,7 @@ class EfficientIdxNMS_TRT(torch.autograd.Function):
         score_activation: int = 0,
         class_agnostic: int = 1,
         plugin_version: str = '1',
-    ) -> Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         batch_size, num_boxes, num_classes = scores.shape
         num_dets = torch.randint(0, max_output_boxes, (batch_size, 1), dtype=torch.int32)
         det_boxes = torch.randn(batch_size, max_output_boxes, 4, dtype=torch.float32)
@@ -1376,7 +1376,7 @@ class EfficientIdxNMS_TRT(torch.autograd.Function):
         score_activation: int = 0,
         class_agnostic: int = 1,
         plugin_version: str = '1',
-    ) -> Tuple[Value, Value, Value, Value, Value]:
+    ) -> Tuple[torch.Value, torch.Value, torch.Value, torch.Value, torch.Value]:
         return g.op(
             'TRT::EfficientIdxNMS_TRT',
             boxes,

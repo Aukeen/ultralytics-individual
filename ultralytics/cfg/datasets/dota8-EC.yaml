@@ -1,0 +1,37 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# DOTA8 dataset 8 images from split DOTAv1 dataset by Ultralytics
+# Documentation: https://docs.ultralytics.com/datasets/obb/dota8/
+# Example usage: yolo train model=yolov8n-obb.pt data=dota8.yaml
+# parent
+# ├── ultralytics
+# └── datasets
+#     └── dota8  ← downloads here (1MB)
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: H:/dataset/obb/all # dataset root dir
+train: images/val # train images (relative to 'path') 4 images
+val: images/test # val images (relative to 'path') 4 images
+
+# Classes for DOTA 1.0
+names:
+  0: SMT_BGA
+  1: SMT_Capacitor
+  2: SMT_QFN
+  3: SMT_ResistorArray
+  4: SMT_Resistor
+  5: SMT_Inductor
+  6: SMT_Resistor_OCR
+  7: SMT_PIN
+  8: SMT_IC
+  9: SMT_Transistor
+  10: SMT_Diode
+  11: SMT_Crystal
+  12: SMT_Mosfet
+  13: SMT_TantalumCapacitors
+  14: SMT_Capacitor_P
+  15: SMT_EleCapacitors
+  16: SMT_LED
+  17: HD_LiJiao
+  18: HD_BuChuJiao
+  19: HD_LuQian_WanJiao
+  20: SMT_Resistor_ColorR
