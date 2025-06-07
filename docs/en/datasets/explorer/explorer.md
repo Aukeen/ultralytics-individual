@@ -15,7 +15,7 @@ keywords: Ultralytics Explorer, data exploration, semantic search, vector simila
 <a href="https://docs.ultralytics.com/ru">Русский</a> |
 <a href="https://docs.ultralytics.com/de">Deutsch</a> |
 <a href="https://docs.ultralytics.com/fr">Français</a> |
-<a href="https://docs.ultralytics.com/es/">Español</a> |
+<a href="https://docs.ultralytics.com/es">Español</a> |
 <a href="https://docs.ultralytics.com/pt">Português</a> |
 <a href="https://docs.ultralytics.com/tr">Türkçe</a> |
 <a href="https://docs.ultralytics.com/vi">Tiếng Việt</a> |
@@ -23,12 +23,12 @@ keywords: Ultralytics Explorer, data exploration, semantic search, vector simila
 <br>
 
 <br>
-    <a href="https://github.com/ultralytics/ultralytics/actions/workflows/ci.yaml"><img src="https://github.com/ultralytics/ultralytics/actions/workflows/ci.yaml/badge.svg" alt="Ultralytics CI"></a>
+    <a href="https://github.com/ultralytics/ultralytics/actions/workflows/ci.yml"><img src="https://github.com/ultralytics/ultralytics/actions/workflows/ci.yml/badge.svg" alt="Ultralytics CI"></a>
     <a href="https://pepy.tech/projects/ultralytics"><img src="https://static.pepy.tech/badge/ultralytics" alt="Ultralytics Downloads"></a>
     <a href="https://zenodo.org/badge/latestdoi/264818686"><img src="https://zenodo.org/badge/264818686.svg" alt="Ultralytics YOLO Citation"></a>
     <a href="https://discord.com/invite/ultralytics"><img alt="Ultralytics Discord" src="https://img.shields.io/discord/1089800235347353640?logo=discord&logoColor=white&label=Discord&color=blue"></a>
     <a href="https://community.ultralytics.com/"><img alt="Ultralytics Forums" src="https://img.shields.io/discourse/users?server=https%3A%2F%2Fcommunity.ultralytics.com&logo=discourse&label=Forums&color=blue"></a>
-    <a href="https://reddit.com/r/ultralytics"><img alt="Ultralytics Reddit" src="https://img.shields.io/reddit/subreddit-subscribers/ultralytics?style=flat&logo=reddit&logoColor=white&label=Reddit&color=blue"></a>
+    <a href="https://www.reddit.com/r/ultralytics/"><img alt="Ultralytics Reddit" src="https://img.shields.io/reddit/subreddit-subscribers/ultralytics?style=flat&logo=reddit&logoColor=white&label=Reddit&color=blue"></a>
     <br>
     <a href="https://console.paperspace.com/github/ultralytics/ultralytics"><img src="https://assets.paperspace.io/img/gradient-badge.svg" alt="Run Ultralytics on Gradient"></a>
     <a href="https://colab.research.google.com/github/ultralytics/ultralytics/blob/main/examples/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open Ultralytics In Colab"></a>
@@ -43,9 +43,9 @@ Try `yolo explorer` powered by Explorer API
 
 Simply `pip install ultralytics` and run `yolo explorer` in your terminal to run custom queries and semantic search on your datasets right inside your browser!
 
-## Ultralytics Explorer support deprecated ⚠️
+!!! warning "Community Note ⚠️"
 
-As of **`ultralytics>=8.3.10`**, Ultralytics explorer support has been deprecated. But don't worry! You can now access similar and even enhanced functionality through [Ultralytics HUB](https://hub.ultralytics.com/), our intuitive no-code platform designed to streamline your workflow. With Ultralytics HUB, you can continue exploring, visualizing, and managing your data effortlessly, all without writing a single line of code. Make sure to check it out and take advantage of its powerful features!🚀
+    As of **`ultralytics>=8.3.10`**, Ultralytics explorer support has been deprecated. But don't worry! You can now access similar and even enhanced functionality through [Ultralytics HUB](https://hub.ultralytics.com/), our intuitive no-code platform designed to streamline your workflow. With Ultralytics HUB, you can continue exploring, visualizing, and managing your data effortlessly, all without writing a single line of code. Make sure to check it out and take advantage of its powerful features!🚀
 
 ## Setup
 
@@ -53,9 +53,7 @@ Pip install `ultralytics` and [dependencies](https://github.com/ultralytics/ultr
 
 ```bash
 %pip install ultralytics[explorer] openai
-import ultralytics
-
-ultralytics.checks()
+yolo checks
 ```
 
 ## Similarity Search
@@ -88,11 +86,9 @@ You can use the also plot the similar samples directly using the `plot_similar` 
 
 ```python
 exp.plot_similar(idx=6500, limit=20)
-# exp.plot_similar(idx=[100,101], limit=10) # Can also pass list of idxs or imgs
+exp.plot_similar(idx=[100, 101], limit=10)  # Can also pass list of idxs or imgs
 
-exp.plot_similar(
-    img="https://ultralytics.com/images/bus.jpg", limit=10, labels=False
-)  # Can also pass any external images
+exp.plot_similar(img="https://ultralytics.com/images/bus.jpg", limit=10, labels=False)  # Can also pass external images
 ```
 
 ![Similarity search image 2](https://github.com/ultralytics/docs/releases/download/0/similarity-search-image-2.avif)
@@ -149,7 +145,7 @@ exp.plot_sql_query("WHERE labels LIKE '%person, person%' AND labels LIKE '%dog%'
 
 ```python
 table = exp.sql_query("WHERE labels LIKE '%person, person%' AND labels LIKE '%dog%' LIMIT 10")
-table
+print(table)
 ```
 
 Just like similarity search, you also get a util to directly plot the sql queries using `exp.plot_sql_query`
@@ -166,7 +162,7 @@ Explorer works on [LanceDB](https://lancedb.github.io/lancedb/) tables internall
 
 ```python
 table = exp.table
-table.schema
+print(table.schema)
 ```
 
 ### Run raw queries¶
@@ -213,12 +209,8 @@ One of the preliminary steps in analysing embeddings is by plotting them in 2D s
 ![Scatterplot Example](https://github.com/ultralytics/docs/releases/download/0/scatterplot-sql-queries.avif)
 
 ```python
-pip install scikit-learn
-
-%matplotlib inline
 import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.decomposition import PCA
+from sklearn.decomposition import PCA  # pip install scikit-learn
 
 # Reduce dimensions using PCA to 3 components for visualization in 3D
 pca = PCA(n_components=3)
